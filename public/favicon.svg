@@ -1,4 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
   <rect width="32" height="32" rx="6" fill="#111"/>
-  <text x="16" y="22" font-family="Inter, system-ui, sans-serif" font-size="16" font-weight="700" fill="#fff" text-anchor="middle">AT</text>
+  <!-- A -->
+  <path d="M6.5 23L10.5 9h3l4 14h-2.8l-.9-3.2H10.2L9.3 23H6.5zm4.2-5.6h3.6L12.5 11.8h-.1L10.7 17.4z" fill="#fff"/>
+  <!-- T -->
+  <path d="M19 11.4V9h9v2.4h-3.2V23h-2.6V11.4H19z" fill="#fff"/>
 </svg>
