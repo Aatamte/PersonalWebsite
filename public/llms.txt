@@ -1,18 +1,28 @@
 # Aaron Tamte
 
-> AI/ML Engineer
+> AI/ML Engineer — Boston, MA
 
 ## About
 
-Aaron Tamte is an AI/ML engineer. This is his personal website featuring a portfolio of projects and a blog.
+Aaron Tamte is an AI/ML engineer pursuing an MS in AI at Northeastern University (GPA 3.83). He builds agent systems and ML infrastructure. Previously a data scientist at Highwire Games where he built graph neural networks over 60M+ user profiles and end-to-end ML pipelines processing 1.6TB+ of data.
 
 ## Links
 
 - Homepage: https://aarontamte.com
-- Blog: https://aarontamte.com/blog
+- Experience: https://aarontamte.com/experience
 - Projects: https://aarontamte.com/projects
+- Blog: https://aarontamte.com/blog
 - Documents: https://aarontamte.com/documents
+- GitHub: https://github.com/Aatamte
+- LinkedIn: https://linkedin.com/in/aarontamte
+
+## Projects
+
+- SheetOS (https://sheetos.ai): AI-powered data platform with custom agentic framework in Go, multi-turn reasoning, 40+ context modules, reactive automations
+- SLM-RL Search (https://github.com/Aatamte/SLM-RL-Search): RL-trained 4B parameter model for agentic code-based retrieval, 3.7x improvement over baseline
+- Multi-Agent LLM Collaboration: Fine-tuned LLaMA-3 8B with LoRA, 85% success rate across 7 coordination environments
+- PyCxsim (https://github.com/Aatamte/PyCxsim): Open-source Python framework for simulating autonomous agents
 
 ## Documents
 
-- Resume: https://aarontamte.com/documents/resume.pdf
+- Resume: https://aarontamte.com/documents/Resume.docx
