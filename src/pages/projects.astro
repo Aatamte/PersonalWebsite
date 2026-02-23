@@ -1,0 +1,36 @@
+---
+import Base from "../layouts/Base.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+
+const projects = [
+  {
+    title: "Project One",
+    description: "A brief description of your first project.",
+    href: "#",
+    tags: ["Python", "Machine Learning"],
+  },
+  {
+    title: "Project Two",
+    description: "A brief description of your second project.",
+    href: "#",
+    tags: ["PyTorch", "NLP"],
+  },
+  {
+    title: "Project Three",
+    description: "A brief description of your third project.",
+    href: "#",
+    tags: ["LLMs", "Infrastructure"],
+  },
+];
+---
+
+<Base title="Projects - Aaron Tamte" description="Projects by Aaron Tamte">
+  <h1>Projects</h1>
+  {projects.map((project) => <ProjectCard {...project} />)}
+</Base>
+
+<style>
+  h1 {
+    margin-bottom: 1rem;
+  }
+</style>

@@ -1,18 +1,86 @@
 ---
+import { getCollection } from "astro:content";
+import Base from "../layouts/Base.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import BlogPostCard from "../components/BlogPostCard.astro";
 
+const posts = (await getCollection("blog"))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+
+const projects = [
+  {
+    title: "Project One",
+    description: "A brief description of your first project.",
+    href: "#",
+    tags: ["Python", "Machine Learning"],
+  },
+  {
+    title: "Project Two",
+    description: "A brief description of your second project.",
+    href: "#",
+    tags: ["PyTorch", "NLP"],
+  },
+  {
+    title: "Project Three",
+    description: "A brief description of your third project.",
+    href: "#",
+    tags: ["LLMs", "Infrastructure"],
+  },
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Aaron Tamte</title>
-	</head>
-	<body>
-		<h1>Aaron Tamte</h1>
-		<p>Welcome to my personal site.</p>
-	</body>
-</html>
+<Base title="Aaron Tamte">
+  <section class="bio">
+    <h1>Aaron Tamte</h1>
+    <p class="tagline">AI/ML Engineer</p>
+    <p>
+      Welcome to my corner of the internet. I build things with machine learning
+      and write about what I learn along the way.
+    </p>
+  </section>
+
+  <section class="projects">
+    <h2>Projects</h2>
+    {projects.map((project) => <ProjectCard {...project} />)}
+    <a href="/projects" class="see-all">All projects &rarr;</a>
+  </section>
+
+  <section class="blog">
+    <h2>Recent Posts</h2>
+    {posts.map((post) => (
+      <BlogPostCard
+        title={post.data.title}
+        date={post.data.date}
+        description={post.data.description}
+        slug={post.id}
+      />
+    ))}
+    <a href="/blog" class="see-all">All posts &rarr;</a>
+  </section>
+</Base>
+
+<style>
+  section {
+    margin-bottom: 3rem;
+  }
+
+  .bio h1 {
+    margin-bottom: 0.25rem;
+  }
+
+  .tagline {
+    color: var(--color-text-muted);
+    margin-bottom: 0.75rem;
+  }
+
+  h2 {
+    margin-bottom: 0.5rem;
+  }
+
+  .see-all {
+    display: inline-block;
+    margin-top: 0.75rem;
+    font-size: 0.9rem;
+  }
+</style>

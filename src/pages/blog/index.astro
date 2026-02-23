@@ -1,0 +1,27 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import BlogPostCard from "../../components/BlogPostCard.astro";
+
+const posts = (await getCollection("blog")).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+
+<Base title="Blog - Aaron Tamte" description="Blog posts by Aaron Tamte">
+  <h1>Blog</h1>
+  {posts.map((post) => (
+    <BlogPostCard
+      title={post.data.title}
+      date={post.data.date}
+      description={post.data.description}
+      slug={post.id}
+    />
+  ))}
+</Base>
+
+<style>
+  h1 {
+    margin-bottom: 1rem;
+  }
+</style>
