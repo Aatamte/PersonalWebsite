@@ -1,0 +1,28 @@
+---
+import DetailPage from "../../layouts/DetailPage.astro";
+import Section from "../../components/Section.astro";
+import KeyPoints from "../../components/KeyPoints.astro";
+---
+
+<DetailPage
+  title="PyCxsim"
+  meta="Open source · April 2023 – ongoing"
+  backHref="/projects"
+  backLabel="Projects"
+  externalHref="https://github.com/Aatamte/PyCxsim"
+  externalLabel="GitHub · pip install pycxsim"
+>
+  <p>An open-source Python framework for simulating autonomous agents in configurable environments. Inspired by complex adaptive systems research, Generative Agents (Park et al. 2023), and LLMs as Economic Agents (Horton 2023).</p>
+
+  <Section title="What It Does">
+    <KeyPoints points={[
+      "Configurable environments where agents interact according to defined rules",
+      "Real-time graphical interface for monitoring and controlling agent behavior during simulation",
+      "Modular architecture supporting various agent types and interaction protocols",
+    ]} />
+  </Section>
+
+  <Section title="Motivation">
+    <p>Exploring how agents behave in simulated economic and political environments — what happens when you give LLM-based agents resources, goals, and the ability to trade, negotiate, or compete.</p>
+  </Section>
+</DetailPage>

@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import Base from "../layouts/Base.astro";
+import ExperienceCard from "../components/ExperienceCard.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 import BlogPostCard from "../components/BlogPostCard.astro";
 
@@ -8,45 +9,104 @@ const posts = (await getCollection("blog"))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 3);
 
-const projects = [
+const experience = [
   {
-    title: "SheetOS",
-    description: "AI-powered data platform with a custom agentic framework in Go.",
-    href: "https://sheetos.ai",
-    tags: ["Go", "React", "LLMs"],
+    title: "Founder & Engineer",
+    company: "SheetOS",
+    slug: "sheetos",
+    location: "Boston, MA",
+    dates: "Dec 2024 – Present",
+    bullets: [
+      "Designed and shipped the entire product solo — Go backend, React frontend, Postgres, agent system, deployment",
+      "Built a custom agentic framework with multi-turn reasoning, 40+ dynamic context modules, and sub-agent orchestration",
+      "Engineered real-time browser sync via ElectricSQL/PGlite — WASM Postgres running client-side, synced over WebSockets",
+    ],
   },
   {
+    title: "Data Scientist",
+    company: "Highwire Games",
+    slug: "highwire-games",
+    location: "Seattle, WA",
+    dates: "June 2023 – Sept 2024",
+    bullets: [
+      "Trained graph neural networks on 60M+ user profiles to predict behavior from public social graph data",
+      "Built ETL pipelines processing 1.6TB+ across 20+ containers using Airflow and Spark on hybrid Proxmox/GCP",
+      "Shipped a React analytics dashboard that gave leadership real-time competitive intelligence",
+    ],
+  },
+];
+
+const education = [
+  {
+    title: "MS in Artificial Intelligence",
+    company: "Northeastern University",
+    slug: "northeastern",
+    location: "Boston, MA",
+    dates: "2024 – 2026",
+    bullets: ["GPA: 3.83/4.0"],
+  },
+  {
+    title: "BA in CS, Economics & Political Science",
+    company: "St Olaf College",
+    slug: "st-olaf",
+    location: "Northfield, MN",
+    dates: "2018 – 2022",
+    bullets: ["Triple major"],
+  },
+];
+
+const projects = [
+  {
     title: "SLM-RL Search",
-    description: "RL-trained 4B model for agentic code-based retrieval. 3.7x improvement over baseline.",
-    href: "https://github.com/Aatamte/SLM-RL-Search",
+    description: "Trained a 4B parameter model with reinforcement learning to write and execute its own search strategies. 3.7x improvement over the untrained baseline.",
+    slug: "slm-rl-search",
     tags: ["RL", "vLLM", "Python"],
   },
   {
     title: "PyCxsim",
-    description: "Open-source framework for simulating autonomous agents.",
-    href: "https://github.com/Aatamte/PyCxsim",
+    description: "Open-source Python package for running multi-agent simulations with a real-time visual interface. pip install pycxsim.",
+    slug: "pycxsim",
     tags: ["Python", "Open Source"],
   },
 ];
 ---
 
 <Base title="Aaron Tamte">
-  <section class="bio">
-    <h1>Aaron Tamte</h1>
-    <p class="tagline">AI/ML Engineer</p>
-    <p>
-      MS in AI at Northeastern University. I build agent systems and ML
-      infrastructure. Previously data scientist at Highwire Games.
-    </p>
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>Aaron Tamte</h1>
+        <p class="subtitle">AI/ML Engineer</p>
+        <p class="bio">
+          I build state of the art AI agent systems. Currently building
+          SheetOS and completing a Master's in Artificial Intelligence at
+          Northeastern University.
+        </p>
+      </div>
+      <img src="/profile.png" alt="Aaron Tamte" class="profile-photo" />
+    </div>
   </section>
 
-  <section class="projects">
+  <section>
+    <h2>Experience</h2>
+    {experience.map((exp) => <ExperienceCard {...exp} detailHref={`/experience/${exp.slug}`} />)}
+    <a href="/experience" class="see-all">All experience &rarr;</a>
+  </section>
+
+  <section>
+    <h2>Education</h2>
+    {education.map((edu) => <ExperienceCard {...edu} detailHref={`/education/${edu.slug}`} />)}
+  </section>
+
+  <section>
     <h2>Projects</h2>
-    {projects.map((project) => <ProjectCard {...project} />)}
+    <div class="grid">
+      {projects.map((project) => <ProjectCard {...project} detailHref={`/projects/${project.slug}`} />)}
+    </div>
     <a href="/projects" class="see-all">All projects &rarr;</a>
   </section>
 
-  <section class="blog">
+  <section>
     <h2>Recent Posts</h2>
     {posts.map((post) => (
       <BlogPostCard
@@ -62,25 +122,80 @@ const projects = [
 
 <style>
   section {
-    margin-bottom: 3rem;
+    margin-bottom: 3.5rem;
   }
 
-  .bio h1 {
+  .hero {
+    margin-bottom: 4rem;
+  }
+
+  .hero-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 2.5rem;
+  }
+
+  .hero-text {
+    flex: 1;
+  }
+
+  .profile-photo {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .hero h1 {
     margin-bottom: 0.25rem;
   }
 
-  .tagline {
+  @media (max-width: 640px) {
+    .hero-content {
+      flex-direction: column-reverse;
+      align-items: center;
+      text-align: center;
+      gap: 1.5rem;
+    }
+
+    .profile-photo {
+      width: 120px;
+      height: 120px;
+    }
+
+    .bio {
+      max-width: none;
+    }
+  }
+
+  .subtitle {
+    font-size: 1.25rem;
     color: var(--color-text-muted);
-    margin-bottom: 0.75rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+
+  .bio {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--color-text-muted);
+    max-width: 600px;
   }
 
   h2 {
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .grid {
+    display: grid;
+    gap: 1rem;
   }
 
   .see-all {
     display: inline-block;
-    margin-top: 0.75rem;
+    margin-top: 1rem;
     font-size: 0.9rem;
+    font-weight: 500;
   }
 </style>

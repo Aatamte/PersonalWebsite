@@ -1,0 +1,34 @@
+---
+import Base from "../../layouts/Base.astro";
+import ExperienceCard from "../../components/ExperienceCard.astro";
+
+const education = [
+  {
+    title: "MS in Artificial Intelligence",
+    company: "Northeastern University",
+    location: "Boston, MA",
+    dates: "Sept 2024 – April 2026",
+    slug: "northeastern",
+    bullets: ["GPA: 3.83/4.0"],
+  },
+  {
+    title: "BA in Computer Science, Economics & Political Science",
+    company: "St Olaf College",
+    location: "Northfield, MN",
+    dates: "Feb 2018 – Dec 2022",
+    slug: "st-olaf",
+    bullets: ["Triple major"],
+  },
+];
+---
+
+<Base title="Education - Aaron Tamte" description="Aaron Tamte's education">
+  <h1>Education</h1>
+  {education.map((edu) => <ExperienceCard {...edu} detailHref={`/education/${edu.slug}`} />)}
+</Base>
+
+<style>
+  h1 {
+    margin-bottom: 1.5rem;
+  }
+</style>

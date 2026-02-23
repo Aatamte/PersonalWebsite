@@ -4,14 +4,23 @@ interface Props {
   description: string;
   href?: string;
   tags?: string[];
+  detailHref?: string;
 }
 
-const { title, description, href, tags } = Astro.props;
+const { title, description, href, tags, detailHref } = Astro.props;
+const linkHref = detailHref || href;
+const Tag = linkHref ? "a" : "div";
+const linkProps = detailHref
+  ? { href: detailHref }
+  : href
+    ? { href, target: "_blank", rel: "noopener" }
+    : {};
 ---
 
-<div class="project-card">
+<Tag class="project-card" {...linkProps}>
   <h3>
-    {href ? <a href={href} target="_blank" rel="noopener">{title}</a> : title}
+    {title}
+    {linkHref && <span class="arrow">&rarr;</span>}
   </h3>
   <p>{description}</p>
   {tags && tags.length > 0 && (
@@ -19,39 +28,66 @@ const { title, description, href, tags } = Astro.props;
       {tags.map((tag) => <span class="tag">{tag}</span>)}
     </div>
   )}
-</div>
+</Tag>
 
 <style>
   .project-card {
-    padding: 1.25rem 0;
-    border-bottom: 1px solid var(--color-border);
+    display: block;
+    padding: 1.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    border-left: 3px solid transparent;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+    text-decoration: none;
+    color: inherit;
   }
 
-  .project-card:last-child {
-    border-bottom: none;
+  .project-card:hover {
+    border-color: #d0d0d0;
+    border-left-color: var(--color-accent);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    transform: translateY(-2px);
+    text-decoration: none;
   }
 
   h3 {
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+  }
+
+  .arrow {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    transition: transform 0.2s;
+  }
+
+  .project-card:hover .arrow {
+    transform: translateX(4px);
+    color: var(--color-accent);
   }
 
   p {
     color: var(--color-text-muted);
     font-size: 0.95rem;
+    line-height: 1.6;
   }
 
   .tags {
     display: flex;
     gap: 0.5rem;
-    margin-top: 0.5rem;
+    margin-top: 0.75rem;
     flex-wrap: wrap;
   }
 
   .tag {
     font-size: 0.75rem;
-    color: var(--color-text-muted);
-    border: 1px solid var(--color-border);
-    padding: 0.125rem 0.5rem;
+    color: var(--color-accent);
+    background: var(--color-accent-light);
+    padding: 0.2rem 0.625rem;
     border-radius: 9999px;
+    font-weight: 500;
   }
 </style>

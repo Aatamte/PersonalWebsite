@@ -1,0 +1,24 @@
+---
+interface Props {
+  points: string[];
+}
+
+const { points } = Astro.props;
+---
+
+<ul class="key-points">
+  {points.map((p) => <li>{p}</li>)}
+</ul>
+
+<style>
+  .key-points {
+    padding-left: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  li {
+    color: var(--color-text-muted);
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+  }
+</style>

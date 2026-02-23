@@ -1,0 +1,33 @@
+---
+import DetailPage from "../../layouts/DetailPage.astro";
+import Section from "../../components/Section.astro";
+import KeyPoints from "../../components/KeyPoints.astro";
+---
+
+<DetailPage
+  title="SLM-RL Search"
+  meta="CS 6220 Data Mining · Northeastern · Fall 2025"
+  backHref="/projects"
+  backLabel="Projects"
+  externalHref="https://github.com/Aatamte/SLM-RL-Search"
+  externalLabel="GitHub"
+>
+  <p>Instead of giving a model a fixed retrieval tool, train it to write and execute Python search code over a corpus. The model generates loops, conditionals, string operations — whatever strategy it thinks will find the answer. This outperforms standard single-query RAG and fixed tool-use formats.</p>
+
+  <Section title="How It Works">
+    <p>A two-stage training pipeline on Qwen3-4B (4 billion parameters):</p>
+    <KeyPoints points={[
+      "Supervised fine-tuning on expert search trajectories — teaching the model what good search code looks like",
+      "Reinforcement learning (GRPO) with a judge-model reward signal — letting the model discover its own strategies",
+    ]} />
+    <p>SFT alone improved significantly over the untrained baseline. RL added another 14.5 percentage points on top.</p>
+  </Section>
+
+  <Section title="Inference Optimization">
+    <p>Training a 4B model with RL on a single 24GB GPU required careful optimization. Used vLLM for batched rollout generation and KV cache utilization, cutting training time from 50+ hours to ~23 hours.</p>
+  </Section>
+
+  <Section title="Results">
+    <p>3.7x improvement over the untrained baseline on agentic retrieval over a Wikipedia corpus.</p>
+  </Section>
+</DetailPage>

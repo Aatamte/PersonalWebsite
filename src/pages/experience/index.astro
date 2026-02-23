@@ -1,0 +1,42 @@
+---
+import Base from "../../layouts/Base.astro";
+import ExperienceCard from "../../components/ExperienceCard.astro";
+
+const experience = [
+  {
+    title: "Founder & Engineer",
+    company: "SheetOS",
+    location: "Boston, MA",
+    dates: "Dec 2024 – Present",
+    slug: "sheetos",
+    bullets: [
+      "Designed and shipped the entire product solo — Go backend, React frontend, Postgres, agent system, deployment",
+      "Built a custom agentic framework with multi-turn reasoning, 40+ dynamic context modules, and sub-agent orchestration",
+      "Engineered real-time browser sync via ElectricSQL/PGlite — WASM Postgres running client-side, synced over WebSockets",
+    ],
+  },
+  {
+    title: "Data Scientist",
+    company: "Highwire Games",
+    location: "Seattle, WA",
+    dates: "June 2023 – Sept 2024",
+    slug: "highwire-games",
+    bullets: [
+      "Trained graph neural networks on 60M+ user profiles to predict behavior from public social graph data",
+      "Built ETL pipelines processing 1.6TB+ across 20+ containers using Airflow and Spark on hybrid Proxmox/GCP",
+      "Shipped a React analytics dashboard that gave leadership real-time competitive intelligence",
+    ],
+  },
+];
+---
+
+<Base title="Experience - Aaron Tamte" description="Aaron Tamte's professional experience">
+  <h1>Experience</h1>
+  {experience.map((exp) => <ExperienceCard {...exp} detailHref={`/experience/${exp.slug}`} />)}
+</Base>
+
+<style>
+  h1 {
+    margin-bottom: 1.5rem;
+  }
+</style>

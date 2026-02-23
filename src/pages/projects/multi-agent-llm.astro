@@ -1,0 +1,31 @@
+---
+import DetailPage from "../../layouts/DetailPage.astro";
+import Section from "../../components/Section.astro";
+import KeyPoints from "../../components/KeyPoints.astro";
+---
+
+<DetailPage
+  title="Multi-Agent LLM Collaboration"
+  meta="Northeastern University · December 2024"
+  backHref="/projects"
+  backLabel="Projects"
+>
+  <p>A multi-agent LLM system where multiple agents coordinate to solve complex tasks. Each agent has its own role, and they communicate through structured protocols to divide work, share findings, and converge on solutions. Model published on HuggingFace.</p>
+
+  <Section title="Architecture">
+    <KeyPoints points={[
+      "Custom reflection mechanisms — agents evaluate their own outputs and revise before passing to others",
+      "Inter-agent communication protocols with dynamic task allocation and sequential ordering",
+      "Permission-based constraints controlling which agents can communicate with which",
+      "Modular interaction system supporting different coordination patterns",
+    ]} />
+  </Section>
+
+  <Section title="Training">
+    <p>Fine-tuned LLaMA-3 8B using LoRA on 6.9M tokens. The LoRA approach gave an 89% compute reduction while matching the performance of the full 70B parameter model on coordination benchmarks.</p>
+  </Section>
+
+  <Section title="Results">
+    <p>85% success rate across 7 complex coordination environments.</p>
+  </Section>
+</DetailPage>

@@ -1,0 +1,35 @@
+---
+import DetailPage from "../../layouts/DetailPage.astro";
+import Section from "../../components/Section.astro";
+import TechStack from "../../components/TechStack.astro";
+import KeyPoints from "../../components/KeyPoints.astro";
+---
+
+<DetailPage
+  title="Data Scientist"
+  subtitle="Highwire Games"
+  meta="Seattle, WA · June 2023 – Sept 2024"
+  backHref="/experience"
+  backLabel="Experience"
+>
+  <p>Sole data scientist at a mid-sized video game studio. No DS manager, no peers — I owned the entire ML lifecycle from data collection to model deployment to stakeholder communication.</p>
+
+  <Section title="Graph Neural Networks at Scale">
+    <p>The main project was predicting private user behavior from public social graph data across 60M+ anonymous user profiles. The model outputs directly informed product strategy and marketing targeting decisions for company leadership.</p>
+    <p>Beyond the GNN, I built models for clustering, churn prediction, look-alike audience targeting, and promotional timing optimization.</p>
+  </Section>
+
+  <Section title="Infrastructure">
+    <TechStack items={[
+      { label: "Data Processing", value: "1.6TB+ via Apache Airflow and Spark across 20+ containers" },
+      { label: "Compute", value: "Hybrid Proxmox/GCP deployment" },
+      { label: "Databases", value: "PostgreSQL (relational), Neo4j (graph)" },
+      { label: "Monitoring", value: "Airflow DAGs, PostgreSQL health checks" },
+      { label: "Scale", value: "60M+ anonymous user profiles, billions of data points" },
+    ]} />
+  </Section>
+
+  <Section title="Analytics Dashboard">
+    <p>Built a full-stack React dashboard that translated model outputs into something non-technical leadership could act on — player segmentation, churn analysis, promotional impact, competitor analysis across the company's titles and key competitors.</p>
+  </Section>
+</DetailPage>

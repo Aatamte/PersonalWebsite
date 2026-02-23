@@ -1,0 +1,51 @@
+---
+import DetailPage from "../../layouts/DetailPage.astro";
+import Section from "../../components/Section.astro";
+import TechStack from "../../components/TechStack.astro";
+import KeyPoints from "../../components/KeyPoints.astro";
+---
+
+<DetailPage
+  title="Founder & Engineer"
+  subtitle="SheetOS"
+  meta="Boston, MA · Dec 2024 – Present"
+  backHref="/experience"
+  backLabel="Experience"
+  externalHref="https://sheetos.ai"
+  externalLabel="sheetos.ai"
+>
+  <p>SheetOS is an AI-powered data platform. The core idea: spreadsheets that keep running when you close the tab. Users describe what they need in natural language, and AI agents build workbooks with tables, sheets, charts, and automations that stay alive.</p>
+  <p>I designed and built every part of this as the sole engineer.</p>
+
+  <Section title="The Agent System">
+    <p>The heart of the product. A custom agentic framework written in Go from scratch — not a LangChain wrapper.</p>
+    <KeyPoints points={[
+      "Multi-turn reasoning: agents think, call tools, observe results, and reason again across extended sessions",
+      "40+ context modules that dynamically compose the system prompt based on what's relevant — workbook state, tool guides, SDK docs, conversation history",
+      "Sub-agent spawning: the main agent delegates focused research tasks to specialized researcher agents",
+      "Tool orchestration: web search, browser automation (full Playwright), table/sheet read-write, Python execution, automation creation",
+      "Real-time SSE/WebSocket streaming with provider-specific adapters for Anthropic and OpenAI",
+    ]} />
+  </Section>
+
+  <Section title="Architecture">
+    <TechStack items={[
+      { label: "Backend", value: "Go (Gin, sqlc for type-safe SQL)" },
+      { label: "Frontend", value: "React/Remix, TypeScript, Tailwind, Jotai" },
+      { label: "Database", value: "PostgreSQL — isolated schema per workbook, true multi-tenancy" },
+      { label: "Real-time", value: "ElectricSQL/PGlite — WASM Postgres in the browser, synced to server" },
+      { label: "Infra", value: "Docker Compose, MinIO, Prometheus/Grafana" },
+      { label: "Deployment", value: "Multi-VM production with Kubernetes configs" },
+    ]} />
+  </Section>
+
+  <Section title="Hard Problems">
+    <KeyPoints points={[
+      "Managing context windows across long multi-turn agent sessions with dynamic module composition and conversation summarization",
+      "Real-time browser sync without traditional WebSocket pub/sub — using WASM Postgres client-side",
+      "Multi-tenant database isolation with per-workbook schemas and live migrations for existing users",
+      "Streaming LLM responses through multiple layers (LLM → Go → WebSocket → React) with provider-specific adapters",
+      "Sandboxed Python execution in isolated containers with full SDK access back into the platform",
+    ]} />
+  </Section>
+</DetailPage>
