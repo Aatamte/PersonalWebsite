@@ -1,0 +1,18 @@
+# Aaron Tamte
+
+> AI/ML Engineer
+
+## About
+
+Aaron Tamte is an AI/ML engineer. This is his personal website featuring a portfolio of projects and a blog.
+
+## Links
+
+- Homepage: https://aarontamte.com
+- Blog: https://aarontamte.com/blog
+- Projects: https://aarontamte.com/projects
+- Documents: https://aarontamte.com/documents
+
+## Documents
+
+- Resume: https://aarontamte.com/documents/resume.pdf
