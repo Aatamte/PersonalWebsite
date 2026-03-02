@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from "astro:content";
 import Base from "../../layouts/Base.astro";
+import BlogImage from "../../components/BlogImage.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -26,7 +27,7 @@ const formattedDate = post.data.date.toLocaleDateString("en-US", {
       <time datetime={post.data.date.toISOString()}>{formattedDate}</time>
     </header>
     <div class="prose">
-      <Content />
+      <Content components={{ img: BlogImage }} />
     </div>
   </article>
 </Base>
