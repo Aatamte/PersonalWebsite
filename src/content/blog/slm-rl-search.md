@@ -18,7 +18,11 @@ The model gets access to three sandboxed functions: `search_pages(query)` for se
 
 **Stage 1: Supervised fine-tuning (SFT).** We collected expert search trajectories by running GPT-5 on training questions, then trained on those trajectories with standard next-token prediction. 81 deduplicated trajectories, 8 epochs, LoRA (r=16, alpha=32). This alone brought accuracy from 11.46% to 28.13%.
 
+![SFT training stage](/images/slm-rl-search-sft.png)
+
 **Stage 2: Reinforcement learning (RL).** Starting from the SFT checkpoint, we used Group Relative Policy Optimization (GRPO) with a judge model (Qwen3-8B-AWQ) scoring each rollout for correctness and approach quality. The reward function combines the sign from correctness with magnitude from approach quality — correct answers get positive rewards scaled by how good the search strategy was, wrong answers get negative rewards. This added another 14.5 percentage points.
+
+![RL training stage](/images/slm-rl-search-rl.png)
 
 ## What the model actually learns
 
