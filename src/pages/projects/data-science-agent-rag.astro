@@ -30,5 +30,7 @@ import KeyPoints from "../../components/KeyPoints.astro";
 
   <Section title="Results">
     <p>Evaluated on 10 representative data science queries using Precision@3. The LLM-annotated approach scored 0.6667 vs. 0.4667 for the baseline — a 43% improvement. The annotation-based method particularly excelled on queries requiring specific techniques (e.g., SMOTE, partial_fit) where raw code embeddings matched on surface keywords but missed the actual implementation.</p>
+    <img src="/images/data-science-agent-rag-metrics.png" alt="Comparison of retrieval metrics for baseline and LLM annotated systems" class="project-img" />
+    <img src="/images/data-science-agent-rag-per-query.png" alt="Per-query Precision@3 comparison" class="project-img" />
   </Section>
 </DetailPage>
