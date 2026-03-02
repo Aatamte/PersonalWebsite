@@ -33,6 +33,10 @@ We evaluated on 10 representative queries spanning data cleaning, feature engine
 
 That's a 43% improvement. The annotated approach achieved perfect precision (1.0) on 4 out of 10 queries, compared to just 1 for the baseline.
 
+![Comparison of retrieval metrics (Precision@5, Precision@3, MRR@5) for baseline and LLM annotated systems](/images/data-science-agent-rag-metrics.png)
+
+![Per-query Precision@3 comparison between baseline and LLM annotated systems](/images/data-science-agent-rag-per-query.png)
+
 ## Where the baseline fails
 
 The error analysis revealed three patterns:
